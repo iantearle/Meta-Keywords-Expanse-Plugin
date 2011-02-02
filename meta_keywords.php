@@ -1,0 +1,30 @@
+<?php
+/*
+Plugin Name: Meta Keywords
+Plugin URI: http://www.iantearle.com/
+Description: Get your site higher on the search engine results. This plugin will allow you the option of managing your meta keywords without editing the template. 
+See General Settings to add your own.
+Author: Ian Tearle
+Version: 1.1
+Author URI: http://www.iantearle.com/
+*/
+
+ozone_action('preferences_general_menu','mk_config_menu');
+
+function mk_config_menu()
+{
+	?>
+	<!-- /*  Meta Keywords List   //===============================*/ -->
+    <label for="meta_keywords">Meta Keywords</label>
+    <textarea name="meta_keywords" cols="40" class="formfields" id="meta_keywords" style="height: 2em;"><?php echo getOption('meta_keywords'); ?></textarea>
+	<?php tooltip('Meta Keywords', 'Enter your keywords separated by a comma.');
+}
+
+
+
+$keywords = getOption('meta_keywords');
+
+if(function_exists('add_variable')){
+	add_variable('keywords:'.$keywords, 'header');
+}
+?>
